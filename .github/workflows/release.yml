@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify version and test
+        env:
+          RELEASE_VERSION: ${{ github.ref_name }}
+        run: |
+          test "$(node -p "require('./manifest.json').version")" = "$RELEASE_VERSION"
+          test "$(node -p "require('./package.json').version")" = "$RELEASE_VERSION"
+          node -e "const versions=require('./versions.json'); if (!versions[process.env.RELEASE_VERSION]) process.exit(1)"
+          npm test
+          node --check main.js
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" main.js manifest.json styles.css --generate-notes --title "$GITHUB_REF_NAME"

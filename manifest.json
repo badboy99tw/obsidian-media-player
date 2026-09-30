@@ -1,0 +1,10 @@
+{
+  "id": "local-media-player",
+  "name": "Media Player",
+  "version": "0.1.0",
+  "minAppVersion": "1.8.0",
+  "description": "Local audio and video player with clickable, writable text timestamps and speed control.",
+  "author": "Chìnkhun Lîm",
+  "authorUrl": "https://github.com/badboy99tw",
+  "isDesktopOnly": false
+}

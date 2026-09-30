@@ -1,0 +1,192 @@
+.media-player {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  padding: var(--size-4-4);
+  background: var(--background-secondary);
+}
+
+.media-player-title {
+  margin: 0 0 var(--size-4-3);
+}
+
+.media-player-audio,
+.media-player-video {
+  display: block;
+  width: 100%;
+  margin-bottom: var(--size-4-3);
+}
+
+.media-player-video {
+  max-height: min(60vh, 640px);
+  margin-inline: auto;
+  background: #000;
+}
+
+.media-player-video[data-size="small"] {
+  width: 50%;
+}
+
+.media-player-video[data-size="medium"] {
+  width: 75%;
+}
+
+.media-player-video[data-size="large"] {
+  width: 100%;
+}
+
+.media-player-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--size-4-2);
+  margin-bottom: var(--size-4-3);
+}
+
+.media-player-toolbar button,
+.media-player-toolbar select {
+  min-height: 32px;
+}
+
+.media-player-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-4-2);
+}
+
+.media-player-toggle-track {
+  position: relative;
+  display: inline-block;
+  width: 32px;
+  height: 18px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--background-modifier-border-hover);
+  transition: background-color 120ms ease;
+}
+
+.media-player-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-on-accent);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
+  transition: transform 120ms ease;
+}
+
+.media-player-toggle.is-on .media-player-toggle-track {
+  background: var(--interactive-accent);
+}
+
+.media-player-toggle.is-on .media-player-toggle-thumb {
+  transform: translateX(14px);
+}
+
+.media-player-timing-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-4-1);
+}
+
+.media-player-timing-save:not(:disabled) {
+  border-color: var(--interactive-accent);
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+}
+
+.media-player-loop-controls {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--size-4-1);
+  margin-left: auto;
+  padding: var(--size-4-1);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+}
+
+.media-player-time {
+  min-width: 9rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.media-player-speed,
+.media-player-size {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-4-1);
+}
+
+.media-player-lines {
+  display: grid;
+  gap: var(--size-4-1);
+}
+
+.media-player-section {
+  margin-top: var(--size-4-2);
+  padding: var(--size-4-2) var(--size-4-3) var(--size-4-1);
+  border-bottom: 1px solid var(--background-modifier-border);
+  color: var(--text-accent);
+  font-weight: var(--font-semibold);
+}
+
+.media-player-section:first-child {
+  margin-top: 0;
+}
+
+.media-player-cue {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: var(--size-4-2);
+  width: 100%;
+  padding: var(--size-4-2) var(--size-4-3);
+  border: 1px solid transparent;
+  border-radius: var(--radius-s);
+  background: transparent;
+  color: var(--text-normal);
+  text-align: left;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.media-player-cue:hover {
+  background: var(--background-modifier-hover);
+}
+
+.media-player-cue.is-active {
+  border-color: var(--interactive-accent);
+  background: color-mix(in srgb, var(--interactive-accent) 14%, transparent);
+}
+
+.media-player-cue.is-repeat-target {
+  border-color: var(--color-orange);
+  box-shadow: inset 3px 0 0 var(--color-orange);
+}
+
+.media-player-cue.is-untimed .media-player-cue-time {
+  color: var(--text-faint);
+}
+
+.media-player.is-timing .media-player-cue:hover {
+  border-color: var(--color-orange);
+}
+
+.media-player-cue-time {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.media-player-errors {
+  margin-bottom: var(--size-4-2);
+  color: var(--text-error);
+}
+
+@media (max-width: 520px) {
+  .media-player-cue {
+    grid-template-columns: 4.75rem minmax(0, 1fr);
+    padding-inline: var(--size-4-2);
+  }
+}

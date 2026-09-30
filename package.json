@@ -1,0 +1,9 @@
+{
+  "name": "obsidian-media-player",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "test": "node test.js",
+    "deploy": "npm test && node scripts/deploy.mjs"
+  }
+}
