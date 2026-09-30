@@ -1,9 +1,9 @@
 {
-  "name": "obsidian-media-player",
+  "name": "obsidian-music-transcriber",
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "test": "node test.js",
+    "test": "node test.js && node editor.test.js",
     "deploy": "npm test && node scripts/deploy.mjs"
   }
 }

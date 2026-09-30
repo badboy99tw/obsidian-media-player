@@ -45,13 +45,13 @@ for (const name of files) {
   console.log(`deployed ${name}`);
 }
 
-const sourceNotice = `# Media Player deployment
+const sourceNotice = `# Music Transcriber deployment
 
 This directory is generated deployment output. Do not edit it directly.
 
-- Source: \`projects/Obsidian Media Player/\`
-- Deploy from vault root: \`make media-player-deploy\`
-- Deploy: \`npm --prefix "projects/Obsidian Media Player" run deploy\`
+- Source: \`projects/Obsidian Music Transcriber/\`
+- Deploy from vault root: \`make music-transcriber-deploy\`
+- Deploy: \`npm --prefix "projects/Obsidian Music Transcriber" run deploy\`
 - After deployment: run \`Reload app without saving\` in Obsidian.
 `;
 await writeFile(path.join(pluginDir, "SOURCE.md"), sourceNotice, "utf8");

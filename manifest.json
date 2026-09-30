@@ -1,9 +1,9 @@
 {
   "id": "local-media-player",
-  "name": "Media Player",
+  "name": "Music Transcriber",
   "version": "0.1.0",
   "minAppVersion": "1.8.0",
-  "description": "Local audio and video player with clickable, writable text timestamps and speed control.",
+  "description": "A music transcription workbench for listening, segmenting recordings, and writing timestamped lyrics with speed control and looping.",
   "author": "Chìnkhun Lîm",
   "authorUrl": "https://github.com/badboy99tw",
   "isDesktopOnly": false

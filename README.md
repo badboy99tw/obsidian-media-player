@@ -1,5 +1,5 @@
 ---
-title: Obsidian Media Player
+title: Obsidian Music Transcriber
 tags:
   - project
   - obsidian
@@ -8,9 +8,9 @@ scope: personal
 status: active
 ---
 
-# Obsidian Media Player
+# Obsidian Music Transcriber
 
-Obsidian 本機音訊／影片播放器，支援可點擊與可寫回的文字時間點、變速和區段循環。執行階段不依賴第三方套件。
+在 Obsidian 裡協助人工採譜與聽寫的工作台：從音訊／影片切段、逐段重聽、填寫歌詞或口白，再保存時間點。變速與區段循環是採譜工具，不是自動轉錄或自動產生樂譜。執行階段不依賴第三方套件。
 
 ## 功能
 
@@ -23,13 +23,16 @@ Obsidian 本機音訊／影片播放器，支援可點擊與可寫回的文字�
 - 循環控制靠齊工具列右側，「設 A」「設 B」與「循環」收在同一個有邊框的功能群組。
 - 單句循環：點歌詞就會選定該句到下一個較晚時間點的區段，之後開啟循環即重複該句；循環開啟時也可直接點別句切換，最後一句循環到媒體結尾。
 - 連續標記時間：播放時可連續點各句記錄時間，最後一次寫回 Markdown code block。
+- 編輯歌詞：點句子進入文字欄，不跳轉；以獨立「播放這段」按鈕試聽。播放時可「新增空白句（目前時間）」，先切段再填詞，按「儲存歌詞」一次寫回。
+- 「在目前時間切段」在本句下方新增空白句，使用當下播放時間，原句文字不動，也不跳轉。「移除此時間點」直接移除空白句；已有歌詞時先確認，保留文字為待標記句，不自動合併。變更按「儲存歌詞」寫回。空白句與只有 `title:` 的播放器也能使用。
+- 編輯歌詞與標記時間互斥。尚未儲存的草稿在本次外掛執行期間保留，重開 app 前仍須儲存；若筆記區塊已被其他方式修改，儲存會拒絕覆寫。
 - 「標記時間」與循環使用帶文字標籤的切換開關，開啟狀態由滑動圓點及 accent 色顯示。「標記時間」旁固定顯示「儲存標記（筆數）」按鈕；沒有待存內容時停用，有新標記時以 accent 色強調。關閉「標記時間」仍會自動儲存，避免誤關遺失。
 - 分段標題：code block 裡的 `# 唱`、`# 口白` 等行會顯示在歌詞列表中，但不參與時間標記、跳轉或循環。
 
 ## Markdown 格式
 
 ````markdown
-```media-player
+```music-transcriber
 title: Song
 # Verse
 --:-- | First lyric line
@@ -39,24 +42,26 @@ title: Song
 
 媒體預設從筆記的 `media_source` property 讀取，也可在 code block 裡以 `media:` 覆寫。音訊與影片共用格式，由副檔名自動決定播放器類型。
 
+筆記區塊只接受 `music-transcriber`，不提供舊語法別名。內部 plugin ID 為 `local-media-player`，不影響筆記區塊名稱。
+
 ## 安裝
 
 ### BRAT
 
 1. 在 Obsidian 安裝並啟用 [BRAT](https://github.com/TfTHacker/obsidian42-brat)。
 2. 執行 **BRAT: Add a beta plugin for testing**。
-3. 輸入 `badboy99tw/obsidian-media-player`。
-4. 啟用 **Media Player**。
+3. 輸入 `badboy99tw/obsidian-music-transcriber`。
+4. 啟用 **Music Transcriber**。
 
 ### 手動安裝
 
-從 [GitHub Releases](https://github.com/badboy99tw/obsidian-media-player/releases) 下載 `main.js`、`manifest.json` 與 `styles.css`，放入 vault 的 `.obsidian/plugins/local-media-player/`，再於 Obsidian 啟用 **Media Player**。
+從 [GitHub Releases](https://github.com/badboy99tw/obsidian-music-transcriber/releases) 下載 `main.js`、`manifest.json` 與 `styles.css`，放入 vault 的 `.obsidian/plugins/local-media-player/`，再於 Obsidian 啟用 **Music Transcriber**。
 
 ## 開發與部署
 
 這個資料夾是唯一原始碼正本：
 
-- 原始碼：`projects/Obsidian Media Player/`
+- 原始碼：`projects/Obsidian Music Transcriber/`
 - Obsidian 執行中的部署副本：`.obsidian/plugins/local-media-player/`
 - 不直接修改部署副本；所有變更先改原始碼並測試。
 
@@ -68,8 +73,8 @@ npm run deploy
 也可以在 vault 根目錄執行：
 
 ```sh
-make media-player-test
-make media-player-deploy
+make music-transcriber-test
+make music-transcriber-deploy
 ```
 
 `npm run deploy` 會先執行測試，再尋找上層包含 `.obsidian/` 的 vault，依 `manifest.json` 的 plugin ID 複製 `main.js`、`manifest.json` 與 `styles.css`，並核對來源與部署副本的 SHA-256。它也會在安裝目錄產生 `SOURCE.md`，提示原始碼位置與部署指令。部署後在 Obsidian 執行「Reload app without saving」。`lib.js` 只供測試使用。

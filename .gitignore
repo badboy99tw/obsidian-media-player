@@ -1,2 +1,50 @@
+# OS and editor-local files
 .DS_Store
+._*
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Dependencies, test output, caches, and temporary files
 node_modules/
+coverage/
+.nyc_output/
+.cache/
+tmp/
+temp/
+*.log
+*.tmp
+*.bak
+
+# Local environment and credentials (sanitized examples may be committed)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local demonstrations, recordings, and private vault content
+/demo/
+/.obsidian/
+/assets/
+/wiki/
+/daily/
+/notes/
+/.agents/
+/.claude/
+*.wav
+*.mp3
+*.m4a
+*.aac
+*.flac
+*.ogg
+*.aiff
+*.aif
+*.mp4
+*.mov
+*.m4v
+*.webm
+
+# Release files main.js, manifest.json, and styles.css are source artifacts:
+# keep them tracked; do not ignore JavaScript or CSS build output globally.
